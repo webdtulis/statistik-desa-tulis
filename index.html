@@ -69,7 +69,6 @@
       left: 0;
       top: 0;
       bottom: 0;
-
       width: 280px;
 
       background:
@@ -103,9 +102,7 @@
     .brand-logo {
       width: 58px;
       height: 58px;
-
       background: white;
-
       border-radius: 15px;
 
       display: flex;
@@ -113,7 +110,6 @@
       justify-content: center;
 
       overflow: hidden;
-
       flex-shrink: 0;
     }
 
@@ -151,9 +147,7 @@
       font-size: 11px;
       font-weight: 800;
       letter-spacing: 1px;
-
       color: rgba(255,255,255,.55);
-
       margin: 0 8px 12px;
     }
 
@@ -166,24 +160,19 @@
     .menu-item {
       border: none;
       outline: none;
-
       width: 100%;
 
       display: flex;
       align-items: center;
-
       gap: 14px;
 
       padding: 13px 15px;
-
       border-radius: 12px;
 
       background: transparent;
-
       color: rgba(255,255,255,.82);
 
       cursor: pointer;
-
       text-align: left;
 
       font-size: 14px;
@@ -205,7 +194,6 @@
 
     .menu-item.active {
       background: rgba(255,255,255,.15);
-
       color: white;
 
       box-shadow:
@@ -219,7 +207,6 @@
 
     .sidebar-footer {
       border-top: 1px solid rgba(255,255,255,.12);
-
       padding: 18px 20px 20px;
     }
 
@@ -237,34 +224,24 @@
 
     .footer-text {
       text-align: center;
-
       color: rgba(255,255,255,.78);
-
       font-size: 11px;
       line-height: 1.65;
     }
 
     .footer-text strong {
       display: block;
-
       color: white;
-
       font-size: 12px;
-
       margin-bottom: 3px;
     }
 
     .footer-kkn {
       display: block;
-
       margin-top: 5px;
-
       color: #f8d66d;
-
       font-size: 11px;
-
       font-weight: 700;
-
       letter-spacing: .2px;
     }
 
@@ -275,9 +252,7 @@
 
     .main {
       margin-left: 280px;
-
       width: calc(100% - 280px);
-
       min-height: 100vh;
 
       display: flex;
@@ -293,7 +268,6 @@
       height: 82px;
 
       background: white;
-
       border-bottom: 1px solid #e5ebe8;
 
       display: flex;
@@ -304,23 +278,20 @@
 
       position: sticky;
       top: 0;
-
       z-index: 100;
     }
 
     .topbar-title h2 {
       font-size: 21px;
       font-weight: 800;
-
       color: #123c34;
     }
 
     .topbar-title p {
       margin-top: 4px;
-
       color: #7a8b87;
-
       font-size: 12px;
+      transition: all .2s ease;
     }
 
     .year-wrapper {
@@ -339,25 +310,29 @@
       height: 42px;
 
       border: 1px solid #d9e6e0;
-
       border-radius: 11px;
 
       padding: 0 14px;
 
       background: #f8fbfa;
-
       color: #07563f;
 
       font-size: 13px;
       font-weight: 700;
 
       outline: none;
-
       cursor: pointer;
+
+      transition: all .2s ease;
     }
 
     .year-select:focus {
       border-color: #0b7254;
+    }
+
+    .year-select:disabled {
+      opacity: .65;
+      cursor: wait;
     }
 
 
@@ -367,7 +342,6 @@
 
     .content {
       padding: 30px 34px 35px;
-
       flex: 1;
     }
 
@@ -377,12 +351,10 @@
 
     .section.active {
       display: block;
-
       animation: fadeIn .25s ease;
     }
 
     @keyframes fadeIn {
-
       from {
         opacity: 0;
         transform: translateY(6px);
@@ -392,7 +364,101 @@
         opacity: 1;
         transform: translateY(0);
       }
+    }
 
+
+    /* =========================================================
+       LOADING OVERLAY
+    ========================================================= */
+
+    .loading-overlay {
+      position: fixed;
+      inset: 0;
+
+      background: rgba(255, 255, 255, .72);
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
+
+      display: none;
+      align-items: center;
+      justify-content: center;
+
+      z-index: 9999;
+    }
+
+    .loading-overlay.active {
+      display: flex;
+    }
+
+    .loading-box {
+      min-width: 230px;
+
+      background: white;
+
+      border: 1px solid #e5ebe8;
+      border-radius: 18px;
+
+      padding: 27px 32px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      box-shadow:
+        0 15px 40px rgba(22,65,54,.15);
+
+      animation: loadingBoxIn .2s ease;
+    }
+
+    @keyframes loadingBoxIn {
+      from {
+        opacity: 0;
+        transform: scale(.96);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .loading-spinner {
+      width: 44px;
+      height: 44px;
+
+      border: 4px solid #e5eee9;
+      border-top-color: #087052;
+
+      border-radius: 50%;
+
+      animation: loadingSpin .8s linear infinite;
+
+      margin-bottom: 15px;
+    }
+
+    @keyframes loadingSpin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .loading-text {
+      color: #123c34;
+      font-size: 14px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .loading-subtext {
+      color: #8a9995;
+      font-size: 11px;
+      margin-top: 5px;
+      text-align: center;
     }
 
 
@@ -402,7 +468,6 @@
 
     .section-hero {
       position: relative;
-
       overflow: hidden;
 
       background:
@@ -414,9 +479,7 @@
         );
 
       border-radius: 19px;
-
       padding: 28px 30px;
-
       margin-bottom: 28px;
 
       color: white;
@@ -437,7 +500,6 @@
       top: -90px;
 
       border-radius: 50%;
-
       background: rgba(255,255,255,.08);
     }
 
@@ -453,7 +515,6 @@
       bottom: -70px;
 
       border-radius: 50%;
-
       background: rgba(255,255,255,.06);
     }
 
@@ -465,15 +526,12 @@
     .section-hero h1 {
       font-size: 26px;
       font-weight: 800;
-
       margin-bottom: 7px;
     }
 
     .section-hero p {
       font-size: 13px;
-
       color: rgba(255,255,255,.88);
-
       line-height: 1.6;
     }
 
@@ -489,15 +547,12 @@
     .section-heading h2 {
       font-size: 22px;
       font-weight: 800;
-
       color: #123c34;
     }
 
     .section-heading p {
       margin-top: 4px;
-
       font-size: 12px;
-
       color: #7c8d89;
     }
 
@@ -508,12 +563,8 @@
 
     .cards {
       display: grid;
-
-      grid-template-columns:
-        repeat(4, minmax(0, 1fr));
-
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 16px;
-
       margin-bottom: 22px;
     }
 
@@ -521,7 +572,6 @@
       background: white;
 
       border: 1px solid #e6ece9;
-
       border-radius: 17px;
 
       padding: 20px;
@@ -584,27 +634,21 @@
 
     .stat-label {
       margin-top: 12px;
-
       color: #71847f;
-
       font-size: 12px;
       font-weight: 500;
     }
 
     .stat-value {
       margin-top: 3px;
-
       font-size: 27px;
       font-weight: 800;
-
       color: #123c34;
     }
 
     .stat-unit {
       margin-top: 2px;
-
       color: #9aa8a5;
-
       font-size: 11px;
     }
 
@@ -628,7 +672,6 @@
       background: white;
 
       border: 1px solid #e5ebe8;
-
       border-radius: 17px;
 
       padding: 20px;
@@ -654,23 +697,18 @@
     .chart-header h3 {
       font-size: 15px;
       font-weight: 800;
-
       color: #163f35;
     }
 
     .chart-header p {
       font-size: 11px;
-
       color: #899893;
-
       margin-top: 4px;
     }
 
     .chart-container {
       position: relative;
-
       height: 260px;
-
       width: 100%;
     }
 
@@ -713,6 +751,7 @@
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
+
       justify-content: center;
       align-items: center;
 
@@ -735,7 +774,6 @@
       min-width: 0;
 
       font-size: 11px;
-
       color: #64746f;
     }
 
@@ -744,7 +782,6 @@
       height: 9px;
 
       border-radius: 50%;
-
       flex-shrink: 0;
     }
 
@@ -756,9 +793,7 @@
 
     .legend-value {
       font-weight: 700;
-
       color: #244b40;
-
       white-space: nowrap;
     }
 
@@ -771,11 +806,9 @@
       display: none;
 
       background: #fff0f0;
-
       color: #a63d45;
 
       border: 1px solid #ffd4d7;
-
       border-radius: 12px;
 
       padding: 14px 16px;
@@ -783,6 +816,16 @@
       margin-bottom: 20px;
 
       font-size: 12px;
+    }
+
+
+    /* =========================================================
+       EMPTY CHART
+    ========================================================= */
+
+    .empty-chart {
+      color: #9aa8a5;
+      font-size: 13px;
     }
 
 
@@ -926,76 +969,43 @@
         font-size: 10px;
       }
 
+      .loading-box {
+        min-width: 200px;
+        padding: 24px 25px;
+      }
+
     }
 
   </style>
-
-  /* =========================================================
-     LOADING OVERLAY
-     ========================================================= */
-  #loadingOverlay {
-    position: fixed;
-    inset: 0;
-    z-index: 99999;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.72);
-    backdrop-filter: blur(3px);
-  }
-
-  #loadingOverlay.active {
-    display: flex;
-  }
-
-  .loading-box {
-    min-width: 250px;
-    padding: 24px 30px;
-    border-radius: 18px;
-    background: #ffffff;
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.14);
-    text-align: center;
-  }
-
-  .loading-spinner {
-    width: 42px;
-    height: 42px;
-    margin: 0 auto 14px;
-    border: 4px solid #d9eee7;
-    border-top-color: #086b52;
-    border-radius: 50%;
-    animation: dashboardSpin 0.8s linear infinite;
-  }
-
-  .loading-text {
-    margin: 0;
-    color: #123c34;
-    font-size: 15px;
-    font-weight: 600;
-  }
-
-  .loading-subtext {
-    margin: 6px 0 0;
-    color: #71847f;
-    font-size: 12px;
-  }
-
-  @keyframes dashboardSpin {
-    to { transform: rotate(360deg); }
-  }
-
 </head>
 
 
 <body>
 
-<!-- Loading indicator -->
-<div id="loadingOverlay" aria-live="polite" aria-busy="true">
+
+<!-- =========================================================
+     LOADING OVERLAY
+========================================================= -->
+
+<div
+  id="loadingOverlay"
+  class="loading-overlay"
+>
+
   <div class="loading-box">
+
     <div class="loading-spinner"></div>
-    <p class="loading-text">Memuat data...</p>
-    <p class="loading-subtext">Mohon tunggu sebentar</p>
+
+    <div class="loading-text">
+      Memuat data...
+    </div>
+
+    <div class="loading-subtext">
+      Mohon tunggu sebentar
+    </div>
+
   </div>
+
 </div>
 
 
@@ -1100,10 +1110,6 @@
     </div>
 
 
-    <!-- =====================================================
-         SIDEBAR FOOTER
-    ====================================================== -->
-
     <div class="sidebar-footer">
 
       <div class="footer-logo">
@@ -1127,7 +1133,7 @@
         Provinsi Jawa Tengah
 
         <span class="footer-kkn">
-          KKN UNDIP 2026
+          TIM II KKN-R UNDIP 2025/2026
         </span>
 
       </div>
@@ -1135,7 +1141,6 @@
     </div>
 
   </aside>
-
 
 
   <!-- =======================================================
@@ -1155,7 +1160,7 @@
           Statistik Desa Tulis
         </h2>
 
-        <p>
+        <p id="topbarSubtitle">
           Profil dan struktur wilayah Desa Tulis
         </p>
 
@@ -1185,7 +1190,6 @@
     </header>
 
 
-
     <!-- CONTENT -->
 
     <div class="content">
@@ -1194,7 +1198,6 @@
         id="errorBox"
         class="error-box"
       ></div>
-
 
 
       <!-- ===================================================
@@ -1239,7 +1242,6 @@
 
         <div class="cards">
 
-
           <div class="card stat-card">
 
             <div class="stat-top">
@@ -1270,7 +1272,6 @@
             </div>
 
           </div>
-
 
 
           <div class="card stat-card">
@@ -1305,7 +1306,6 @@
           </div>
 
 
-
           <div class="card stat-card">
 
             <div class="stat-top">
@@ -1336,7 +1336,6 @@
             </div>
 
           </div>
-
 
 
           <div class="card stat-card">
@@ -1370,7 +1369,6 @@
 
           </div>
 
-
         </div>
 
 
@@ -1402,7 +1400,6 @@
         </div>
 
       </section>
-
 
 
       <!-- ===================================================
@@ -1447,7 +1444,6 @@
 
         <div class="cards">
 
-
           <div class="card stat-card">
 
             <div class="stat-top">
@@ -1478,7 +1474,6 @@
             </div>
 
           </div>
-
 
 
           <div class="card stat-card">
@@ -1513,7 +1508,6 @@
           </div>
 
 
-
           <div class="card stat-card">
 
             <div class="stat-top">
@@ -1544,7 +1538,6 @@
             </div>
 
           </div>
-
 
 
           <div class="card stat-card">
@@ -1583,7 +1576,6 @@
 
         <div class="chart-grid">
 
-
           <div class="chart-card">
 
             <div class="chart-header">
@@ -1621,7 +1613,6 @@
           </div>
 
 
-
           <div class="chart-card">
 
             <div class="chart-header">
@@ -1649,11 +1640,9 @@
 
           </div>
 
-
         </div>
 
       </section>
-
 
 
       <!-- ===================================================
@@ -1695,8 +1684,6 @@
 
         </div>
 
-
-        <!-- TOTAL SAJA -->
 
         <div class="cards">
 
@@ -1773,7 +1760,6 @@
       </section>
 
 
-
       <!-- ===================================================
            FASILITAS UMUM
       ==================================================== -->
@@ -1816,7 +1802,6 @@
 
         <div class="cards">
 
-
           <div class="card stat-card">
 
             <div class="stat-top">
@@ -1847,7 +1832,6 @@
             </div>
 
           </div>
-
 
 
           <div class="card stat-card">
@@ -1882,7 +1866,6 @@
           </div>
 
 
-
           <div class="card stat-card">
 
             <div class="stat-top">
@@ -1913,7 +1896,6 @@
             </div>
 
           </div>
-
 
 
           <div class="card stat-card">
@@ -1949,8 +1931,6 @@
 
         </div>
 
-
-        <!-- KATEGORI -->
 
         <div class="chart-card">
 
@@ -1989,15 +1969,10 @@
         </div>
 
 
-        <!-- JENIS FASILITAS -->
-
         <div
           class="chart-grid"
           style="margin-top:18px;"
         >
-
-
-          <!-- PENDIDIKAN -->
 
           <div class="chart-card">
 
@@ -2027,9 +2002,6 @@
           </div>
 
 
-
-          <!-- KESEHATAN -->
-
           <div class="chart-card">
 
             <div class="chart-header">
@@ -2057,9 +2029,6 @@
 
           </div>
 
-
-
-          <!-- KEAGAMAAN -->
 
           <div class="chart-card">
 
@@ -2089,9 +2058,6 @@
           </div>
 
 
-
-          <!-- LAINNYA -->
-
           <div class="chart-card">
 
             <div class="chart-header">
@@ -2119,11 +2085,9 @@
 
           </div>
 
-
         </div>
 
       </section>
-
 
 
       <!-- ===================================================
@@ -2206,8 +2170,6 @@
         <div class="chart-grid">
 
 
-          <!-- DUSUN -->
-
           <div class="chart-card">
 
             <div class="chart-header">
@@ -2245,9 +2207,6 @@
           </div>
 
 
-
-          <!-- JENIS USAHA -->
-
           <div class="chart-card">
 
             <div class="chart-header">
@@ -2275,9 +2234,6 @@
 
           </div>
 
-
-
-          <!-- WILAYAH PEMASARAN -->
 
           <div class="chart-card">
 
@@ -2315,9 +2271,6 @@
 
           </div>
 
-
-
-          <!-- MEDIA PEMASARAN -->
 
           <div class="chart-card">
 
@@ -2370,582 +2323,1990 @@
 
 
 <script>
-  // =========================================================
-  // DATA API - GOOGLE APPS SCRIPT (JSONP)
-  // Dipakai agar dashboard GitHub Pages tidak terkena CORS.
-  // Ganti API_URL dengan URL Web App Apps Script.
-  // =========================================================
-  const API_URL = 'PASTE_APPS_SCRIPT_WEB_APP_URL_HERE';
+
+  /* =========================================================
+     DATA API - GOOGLE APPS SCRIPT
+  ========================================================= */
+
+  const API_URL =
+    'https://script.google.com/macros/s/AKfycbxp8IUzB34AxtwRe0HT18c_H0yBdLXKWVppZ5ZFUbfvE64D7mWo478g50a5AMzgxHQA/exec';
+
+
+  /* =========================================================
+     API REQUEST
+  ========================================================= */
 
   function apiRequest(action, params = {}) {
-    return new Promise(function(resolve, reject) {
-      const callbackName = '__dashboardCallback_' + Date.now() + '_' +
-        Math.random().toString(36).slice(2);
 
-      const script = document.createElement('script');
-      const url = new URL(API_URL);
+    const url = new URL(API_URL);
 
-      url.searchParams.set('action', action);
-      url.searchParams.set('callback', callbackName);
+    url.searchParams.set('action', action);
 
-      Object.keys(params).forEach(function(key) {
-        if (params[key] !== undefined && params[key] !== null) {
-          url.searchParams.set(key, params[key]);
-        }
-      });
+    Object.keys(params).forEach(key => {
 
-      let finished = false;
-      const timeout = setTimeout(function() {
-        finish(new Error('Koneksi ke Apps Script timeout.'));
-      }, 15000);
-
-      function cleanup() {
-        clearTimeout(timeout);
-        script.remove();
-        try { delete window[callbackName]; } catch (e) {}
+      if (
+        params[key] !== undefined &&
+        params[key] !== null
+      ) {
+        url.searchParams.set(
+          key,
+          params[key]
+        );
       }
 
-      function finish(error, payload) {
-        if (finished) return;
-        finished = true;
-        cleanup();
-
-        if (error) {
-          reject(error);
-          return;
-        }
-
-        if (!payload || payload.success === false) {
-          reject(new Error((payload && payload.message) ||
-            'Gagal mengambil data dari Apps Script.'));
-          return;
-        }
-
-        resolve(payload);
-      }
-
-      window[callbackName] = function(payload) {
-        finish(null, payload);
-      };
-
-      script.onerror = function() {
-        finish(new Error(
-          'Tidak dapat terhubung ke Web App Apps Script. Periksa URL Web App dan deployment.'
-        ));
-      };
-
-      script.src = url.toString();
-      document.head.appendChild(script);
     });
+
+    return fetch(url.toString(), {
+      method: 'GET',
+      cache: 'no-store'
+    })
+
+    .then(async response => {
+
+      const text =
+        await response.text();
+
+      let payload;
+
+      try {
+
+        payload =
+          JSON.parse(text);
+
+      } catch (err) {
+
+        throw new Error(
+          'Respons Apps Script bukan JSON yang valid.'
+        );
+
+      }
+
+      if (
+        !response.ok ||
+        payload.success === false
+      ) {
+
+        throw new Error(
+          payload.message ||
+          'Gagal mengambil data dari Apps Script.'
+        );
+
+      }
+
+      return payload;
+
+    });
+
   }
 
+
+  /* =========================================================
+     GLOBAL DATA
+  ========================================================= */
 
   let dashboardData = null;
+
   let currentYear = '';
+
   const charts = {};
 
+
   const COLORS = [
-    '#2474E8', '#E94B5F', '#28A36A', '#F4A21A',
-    '#7B4DE2', '#13A7A0', '#EF6C2F', '#5865F2',
-    '#C44569', '#16A085'
+    '#2474E8',
+    '#E94B5F',
+    '#28A36A',
+    '#F4A21A',
+    '#7B4DE2',
+    '#13A7A0',
+    '#EF6C2F',
+    '#5865F2',
+    '#C44569',
+    '#16A085'
   ];
 
+
+  /* =========================================================
+     FORMAT NUMBER
+  ========================================================= */
+
   function formatNumber(value) {
-    return Number(value || 0).toLocaleString('id-ID');
+
+    return Number(
+      value || 0
+    ).toLocaleString('id-ID');
+
   }
 
-  document.addEventListener('DOMContentLoaded', function() {
-    loadYears();
-  });
+
+  /* =========================================================
+     INITIAL LOAD
+  ========================================================= */
+
+  document.addEventListener(
+    'DOMContentLoaded',
+    function() {
+
+      showLoading();
+
+      loadYears();
+
+    }
+  );
+
+
+  /* =========================================================
+     LOAD YEARS
+  ========================================================= */
 
   function loadYears() {
+
     hideError();
-    showLoading('Memuat data tahun...');
+
+    showLoading();
 
     apiRequest('years')
-      .then(payload => {
-        const years = Array.isArray(payload.years) ? payload.years : [];
-        const select = document.getElementById('yearSelect');
 
-        if (!select) return;
+      .then(payload => {
+
+        const years =
+          Array.isArray(payload.years)
+            ? payload.years
+            : [];
+
+        const select =
+          document.getElementById(
+            'yearSelect'
+          );
+
+        if (!select) {
+
+          hideLoading();
+
+          return;
+
+        }
 
         select.innerHTML = '';
 
+
         if (!years.length) {
-          select.innerHTML = '<option value="">Tidak ada tahun</option>';
+
+          select.innerHTML =
+            '<option value="">Tidak ada tahun</option>';
+
           hideLoading();
+
           return;
+
         }
+
 
         years.forEach(year => {
-          const option = document.createElement('option');
-          option.value = String(year);
-          option.textContent = String(year);
-          select.appendChild(option);
+
+          const option =
+            document.createElement(
+              'option'
+            );
+
+          option.value =
+            String(year);
+
+          option.textContent =
+            String(year);
+
+          select.appendChild(
+            option
+          );
+
         });
 
-        const latestYear = String(years[years.length - 1]);
-        select.value = latestYear;
-        loadDashboard(latestYear);
+
+        const latestYear =
+          String(
+            years[years.length - 1]
+          );
+
+        select.value =
+          latestYear;
+
+
+        loadDashboard(
+          latestYear
+        );
+
       })
+
       .catch(error => {
+
         hideLoading();
-        showError('Gagal memuat daftar tahun: ' + error.message);
-        const select = document.getElementById('yearSelect');
+
+        showError(
+          'Gagal memuat daftar tahun: ' +
+          error.message
+        );
+
+        const select =
+          document.getElementById(
+            'yearSelect'
+          );
+
         if (select) {
-          select.innerHTML = '<option value="">Gagal memuat tahun</option>';
+
+          select.innerHTML =
+            '<option value="">Gagal memuat tahun</option>';
+
         }
+
       });
+
   }
+
+
+  /* =========================================================
+     CHANGE YEAR
+  ========================================================= */
+
+  function changeYear() {
+
+    const select =
+      document.getElementById(
+        'yearSelect'
+      );
+
+    if (!select) return;
+
+    const year =
+      select.value;
+
+    if (!year) return;
+
+    loadDashboard(
+      year
+    );
+
+  }
+
+
+  /* =========================================================
+     LOAD DASHBOARD
+  ========================================================= */
 
   function loadDashboard(year) {
+
     hideError();
+
     showLoading();
 
-    apiRequest('dashboard', { tahun: String(year) })
-      .then(payload => {
-        const data = payload && payload.data ? payload.data : null;
+    apiRequest(
+      'dashboard',
+      {
+        tahun: String(year)
+      }
+    )
 
-        if (!data) {
-          throw new Error('Data dashboard kosong.');
-        }
+    .then(payload => {
 
-        dashboardData = data;
-        currentYear = String(data.tahun || year);
-        renderDashboard(data);
-        hideLoading();
-      })
-      .catch(error => {
-        hideLoading();
-        showError('Gagal memuat data dashboard: ' + error.message);
-      });
+      const data =
+        payload &&
+        payload.data
+          ? payload.data
+          : null;
+
+
+      if (!data) {
+
+        throw new Error(
+          'Data dashboard kosong.'
+        );
+
+      }
+
+
+      dashboardData =
+        data;
+
+
+      currentYear =
+        String(
+          data.tahun || year
+        );
+
+
+      renderDashboard(
+        data
+      );
+
+
+      hideLoading();
+
+    })
+
+    .catch(error => {
+
+      hideLoading();
+
+      showError(
+        'Gagal memuat data dashboard: ' +
+        error.message
+      );
+
+    });
+
   }
+
+
+  /* =========================================================
+     RENDER DASHBOARD
+  ========================================================= */
 
   function renderDashboard(data) {
+
     if (!data) return;
-    const year = data.tahun || currentYear;
-    updateYears(year);
-    renderAdministrasi(data);
-    renderPenduduk(data);
-    renderAgama(data);
-    renderFasilitas(data);
-    renderUMKM(data);
+
+    const year =
+      data.tahun ||
+      currentYear;
+
+    updateYears(
+      year
+    );
+
+    renderAdministrasi(
+      data
+    );
+
+    renderPenduduk(
+      data
+    );
+
+    renderAgama(
+      data
+    );
+
+    renderFasilitas(
+      data
+    );
+
+    renderUMKM(
+      data
+    );
+
   }
+
+
+  /* =========================================================
+     UPDATE YEAR
+  ========================================================= */
 
   function updateYears(year) {
-    ['adminYear', 'pendudukYear'].forEach(function(id) {
-      setText(id, year);
+
+    [
+      'adminYear',
+      'pendudukYear'
+    ].forEach(function(id) {
+
+      setText(
+        id,
+        year
+      );
+
     });
 
-    ['heroYearAdmin', 'heroYearPenduduk', 'heroYearAgama',
-     'heroYearFasilitas', 'heroYearUmkm'].forEach(function(id) {
-      setText(id, year);
+
+    [
+      'heroYearAdmin',
+      'heroYearPenduduk',
+      'heroYearAgama',
+      'heroYearFasilitas',
+      'heroYearUmkm'
+    ].forEach(function(id) {
+
+      setText(
+        id,
+        year
+      );
+
     });
+
   }
+
+
+  /* =========================================================
+     ADMINISTRASI
+  ========================================================= */
 
   function renderAdministrasi(data) {
-    const profil = data.profil || {};
-    const wilayah = data.wilayah || [];
 
-    setText('adminDusun', formatNumber(profil.dusun));
-    setText('adminRW', formatNumber(profil.rw));
-    setText('adminRT', formatNumber(profil.rt));
+    const profil =
+      data.profil || {};
 
-    const labels = wilayah.map(item => item.dusun);
-    const rw = wilayah.map(item => Number(item.rw || 0));
-    const rt = wilayah.map(item => Number(item.rt || 0));
+    const wilayah =
+      data.wilayah || [];
 
-    createChart('adminChart', 'bar', labels, [
-      {
-        label: 'Jumlah RW', data: rw,
-        backgroundColor: '#2474E8', borderRadius: 6, barThickness: 16
-      },
-      {
-        label: 'Jumlah RT', data: rt,
-        backgroundColor: '#E94B5F', borderRadius: 6, barThickness: 16
-      }
-    ], {
-      indexAxis: 'y',
-      plugins: { legend: { position: 'top' } },
-      scales: {
-        x: { beginAtZero: true, ticks: { precision: 0 } },
-        y: { grid: { display: false } }
-      }
-    });
-  }
 
-  function renderPenduduk(data) {
-    const penduduk = data.penduduk || {};
-    const dusun = data.dusun || [];
+    setText(
+      'adminDusun',
+      formatNumber(
+        profil.dusun
+      )
+    );
 
-    setText('pendudukTotal', formatNumber(penduduk.total));
-    setText('pendudukLaki', formatNumber(penduduk.laki));
-    setText('pendudukPerempuan', formatNumber(penduduk.perempuan));
 
-    const genderLabels = ['Laki-Laki', 'Perempuan'];
-    const genderValues = [
-      Number(penduduk.laki || 0),
-      Number(penduduk.perempuan || 0)
-    ];
+    setText(
+      'adminRW',
+      formatNumber(
+        profil.rw
+      )
+    );
 
-    createDonut('genderChart', genderLabels, genderValues);
-    createLegend('genderLegend', genderLabels, genderValues);
+
+    setText(
+      'adminRT',
+      formatNumber(
+        profil.rt
+      )
+    );
+
+
+    const labels =
+      wilayah.map(
+        item => item.dusun
+      );
+
+
+    const rw =
+      wilayah.map(
+        item =>
+          Number(
+            item.rw || 0
+          )
+      );
+
+
+    const rt =
+      wilayah.map(
+        item =>
+          Number(
+            item.rt || 0
+          )
+      );
+
 
     createChart(
-      'populationDusunChart',
+      'adminChart',
       'bar',
-      dusun.map(item => item.dusun),
-      [{
-        label: 'Jumlah Penduduk',
-        data: dusun.map(item => Number(item.jumlah || 0)),
-        backgroundColor: '#2474E8',
-        borderRadius: 6,
-        barThickness: 20
-      }],
+      labels,
+      [
+        {
+          label: 'Jumlah RW',
+          data: rw,
+          backgroundColor: '#2474E8',
+          borderRadius: 6,
+          barThickness: 16
+        },
+        {
+          label: 'Jumlah RT',
+          data: rt,
+          backgroundColor: '#E94B5F',
+          borderRadius: 6,
+          barThickness: 16
+        }
+      ],
       {
         indexAxis: 'y',
-        plugins: { legend: { display: false } },
+
+        plugins: {
+          legend: {
+            position: 'top'
+          }
+        },
+
         scales: {
+
           x: {
             beginAtZero: true,
             ticks: {
-              precision: 0,
-              callback: value => Number(value).toLocaleString('id-ID')
+              precision: 0
             }
           },
-          y: { grid: { display: false } }
-        }
-      }
-    );
-  }
 
-  function renderAgama(data) {
-    const agama = data.agama || [];
-    const labels = agama.map(item => item.agama);
-    const values = agama.map(item => Number(item.jumlah || 0));
-    const total = values.reduce((sum, value) => sum + value, 0);
-
-    setText('agamaTotal', formatNumber(total));
-    createDonut('agamaChart', labels, values);
-    createLegend('agamaLegend', labels, values);
-  }
-
-  function renderFasilitas(data) {
-    const fasilitas = data.fasilitas || {};
-
-    setText('fasilitasTotal', formatNumber(fasilitas.total));
-    setText('fasilitasPendidikan', formatNumber(fasilitas.pendidikan));
-    setText('fasilitasKesehatan', formatNumber(fasilitas.kesehatan));
-    setText('fasilitasKeagamaan', formatNumber(fasilitas.keagamaan));
-
-    const categoryLabels = ['Pendidikan', 'Kesehatan', 'Keagamaan', 'Lainnya'];
-    const categoryValues = [
-      Number(fasilitas.pendidikan || 0),
-      Number(fasilitas.kesehatan || 0),
-      Number(fasilitas.keagamaan || 0),
-      Number(fasilitas.lainnya || 0)
-    ];
-
-    createDonut('fasilitasCategoryChart', categoryLabels, categoryValues);
-    createLegend('fasilitasLegend', categoryLabels, categoryValues);
-
-    const jenis = fasilitas.jenis || [];
-
-    createFacilityChart(
-      'fasilitasPendidikanChart',
-      jenis.filter(item => String(item.kategori || '').toLowerCase() === 'pendidikan'),
-      '#2474E8'
-    );
-    createFacilityChart(
-      'fasilitasKesehatanChart',
-      jenis.filter(item => String(item.kategori || '').toLowerCase() === 'kesehatan'),
-      '#E94B5F'
-    );
-    createFacilityChart(
-      'fasilitasKeagamaanChart',
-      jenis.filter(item => {
-        const k = String(item.kategori || '').toLowerCase();
-        return k === 'keagamaan' || k === 'agama';
-      }),
-      '#7B4DE2'
-    );
-    createFacilityChart(
-      'fasilitasLainnyaChart',
-      jenis.filter(item => {
-        const k = String(item.kategori || '').toLowerCase();
-        return k !== 'pendidikan' && k !== 'kesehatan' &&
-               k !== 'keagamaan' && k !== 'agama';
-      }),
-      '#F4A21A'
-    );
-  }
-
-  function renderUMKM(data) {
-    const umkm = data.umkm || {};
-    setText('umkmTotal', formatNumber(umkm.total));
-
-    const dusun = umkm.dusun || [];
-    const dusunLabels = dusun.map(item => item.dusun);
-    const dusunValues = dusun.map(item => Number(item.jumlah || 0));
-    createDonut('umkmDusunChart', dusunLabels, dusunValues);
-    createLegend('umkmDusunLegend', dusunLabels, dusunValues);
-
-    const jenis = umkm.jenisUsaha || [];
-    createChart('umkmJenisChart', 'bar',
-      jenis.map(item => item.jenis),
-      [{
-        label: 'Jumlah UMKM',
-        data: jenis.map(item => Number(item.jumlah || 0)),
-        backgroundColor: '#7B4DE2',
-        borderRadius: 6,
-        barThickness: 18
-      }],
-      {
-        indexAxis: 'y',
-        plugins: { legend: { display: false } },
-        scales: {
-          x: { beginAtZero: true, ticks: { precision: 0 } },
-          y: { grid: { display: false } }
-        }
-      }
-    );
-
-    const wilayah = umkm.wilayahPemasaran || [];
-    const wilayahLabels = wilayah.map(item => item.wilayah);
-    const wilayahValues = wilayah.map(item => Number(item.jumlah || 0));
-    createDonut('umkmWilayahChart', wilayahLabels, wilayahValues);
-    createLegend('umkmWilayahLegend', wilayahLabels, wilayahValues);
-
-    const media = umkm.mediaPemasaran || [];
-    const mediaLabels = media.map(item => item.media);
-    const mediaValues = media.map(item => Number(item.jumlah || 0));
-    createDonut('umkmMediaChart', mediaLabels, mediaValues);
-    createLegend('umkmMediaLegend', mediaLabels, mediaValues);
-  }
-
-  function createFacilityChart(canvasId, items, color) {
-    const canvas = document.getElementById(canvasId);
-    if (!canvas) return;
-
-    const parent = canvas.parentElement;
-    const oldEmpty = parent.querySelector('.empty-chart');
-    if (oldEmpty) oldEmpty.remove();
-
-    if (!items || items.length === 0) {
-      destroyChart(canvasId);
-      canvas.style.display = 'none';
-
-      const empty = document.createElement('div');
-      empty.className = 'empty-chart';
-      empty.style.height = '100%';
-      empty.style.display = 'flex';
-      empty.style.alignItems = 'center';
-      empty.style.justifyContent = 'center';
-      empty.style.color = '#9aa8a5';
-      empty.style.fontSize = '13px';
-      empty.textContent = 'Data fasilitas belum tersedia.';
-      parent.appendChild(empty);
-      return;
-    }
-
-    canvas.style.display = 'block';
-
-    const labels = items.map(item => item.nama);
-    const values = items.map(item => Number(item.jumlah || 0));
-
-    createChart(canvasId, 'bar', labels, [{
-      label: 'Jumlah',
-      data: values,
-      backgroundColor: color,
-      borderRadius: 6,
-      barThickness: 18
-    }], {
-      indexAxis: 'y',
-      plugins: { legend: { display: false } },
-      scales: {
-        x: { beginAtZero: true, ticks: { precision: 0 } },
-        y: { grid: { display: false }, ticks: { font: { size: 10 } } }
-      }
-    });
-  }
-
-  function createDonut(canvasId, labels, data) {
-    if (!labels || labels.length === 0) {
-      destroyChart(canvasId);
-      return;
-    }
-
-    createChart(canvasId, 'doughnut', labels, [{
-      data: data,
-      backgroundColor: COLORS.slice(0, labels.length),
-      borderColor: '#ffffff',
-      borderWidth: 3,
-      hoverOffset: 6
-    }], {
-      cutout: '63%',
-      plugins: { legend: { display: false } }
-    });
-  }
-
-  function createLegend(elementId, labels, values) {
-    const container = document.getElementById(elementId);
-    if (!container) return;
-    container.innerHTML = '';
-
-    const total = values.reduce((sum, value) => sum + Number(value || 0), 0);
-
-    labels.forEach(function(label, index) {
-      const value = Number(values[index] || 0);
-      const percent = total > 0 ? ((value / total) * 100).toFixed(1) : '0.0';
-
-      const item = document.createElement('div');
-      item.className = 'legend-item';
-
-      const dot = document.createElement('span');
-      dot.className = 'legend-dot';
-      dot.style.backgroundColor = COLORS[index % COLORS.length];
-
-      const name = document.createElement('span');
-      name.className = 'legend-name';
-      name.textContent = label;
-
-      const valueEl = document.createElement('span');
-      valueEl.className = 'legend-value';
-      valueEl.textContent = formatNumber(value) + ' (' + percent + '%)';
-
-      item.appendChild(dot);
-      item.appendChild(name);
-      item.appendChild(valueEl);
-      container.appendChild(item);
-    });
-  }
-
-  function createChart(canvasId, type, labels, datasets, options) {
-    const canvas = document.getElementById(canvasId);
-    if (!canvas) return;
-
-    if (charts[canvasId]) {
-      charts[canvasId].destroy();
-      delete charts[canvasId];
-    }
-
-    const defaultOptions = {
-      responsive: true,
-      maintainAspectRatio: false,
-      animation: { duration: 450 },
-      plugins: {
-        legend: {
-          labels: {
-            usePointStyle: true,
-            pointStyle: 'circle',
-            padding: 18,
-            font: { size: 11 }
-          }
-        },
-        tooltip: {
-          backgroundColor: 'rgba(18,60,52,.94)',
-          padding: 10,
-          titleFont: { size: 11 },
-          bodyFont: { size: 11 },
-          callbacks: {
-            label: function(context) {
-              const value = context.parsed && context.parsed.x !== undefined
-                ? context.parsed.x
-                : context.parsed && context.parsed.y !== undefined
-                  ? context.parsed.y
-                  : context.raw;
-              return ' ' + Number(value || 0).toLocaleString('id-ID');
+          y: {
+            grid: {
+              display: false
             }
           }
+
         }
-      },
-      scales: {
-        x: {
-          grid: { color: '#edf1ef' },
-          ticks: { color: '#7b8985', font: { size: 10 } }
-        },
-        y: {
-          grid: { color: '#edf1ef' },
-          ticks: { color: '#7b8985', font: { size: 10 } }
-        }
+
       }
+    );
+
+  }
+
+
+  /* =========================================================
+     PENDUDUK
+  ========================================================= */
+
+  function renderPenduduk(data) {
+
+    const penduduk =
+      data.penduduk || {};
+
+    const dusun =
+      data.dusun || [];
+
+
+    setText(
+      'pendudukTotal',
+      formatNumber(
+        penduduk.total
+      )
+    );
+
+
+    setText(
+      'pendudukLaki',
+      formatNumber(
+        penduduk.laki
+      )
+    );
+
+
+    setText(
+      'pendudukPerempuan',
+      formatNumber(
+        penduduk.perempuan
+      )
+    );
+
+
+    const genderLabels = [
+      'Laki-Laki',
+      'Perempuan'
+    ];
+
+
+    const genderValues = [
+
+      Number(
+        penduduk.laki || 0
+      ),
+
+      Number(
+        penduduk.perempuan || 0
+      )
+
+    ];
+
+
+    createDonut(
+      'genderChart',
+      genderLabels,
+      genderValues
+    );
+
+
+    createLegend(
+      'genderLegend',
+      genderLabels,
+      genderValues
+    );
+
+
+    createChart(
+
+      'populationDusunChart',
+
+      'bar',
+
+      dusun.map(
+        item => item.dusun
+      ),
+
+      [
+        {
+          label: 'Jumlah Penduduk',
+
+          data: dusun.map(
+            item =>
+              Number(
+                item.jumlah || 0
+              )
+          ),
+
+          backgroundColor:
+            '#2474E8',
+
+          borderRadius: 6,
+
+          barThickness: 20
+        }
+      ],
+
+      {
+
+        indexAxis: 'y',
+
+        plugins: {
+          legend: {
+            display: false
+          }
+        },
+
+        scales: {
+
+          x: {
+
+            beginAtZero: true,
+
+            ticks: {
+
+              precision: 0,
+
+              callback:
+                value =>
+                  Number(
+                    value
+                  ).toLocaleString(
+                    'id-ID'
+                  )
+
+            }
+
+          },
+
+          y: {
+            grid: {
+              display: false
+            }
+          }
+
+        }
+
+      }
+
+    );
+
+  }
+
+
+  /* =========================================================
+     AGAMA
+  ========================================================= */
+
+  function renderAgama(data) {
+
+    const agama =
+      data.agama || [];
+
+
+    const labels =
+      agama.map(
+        item => item.agama
+      );
+
+
+    const values =
+      agama.map(
+        item =>
+          Number(
+            item.jumlah || 0
+          )
+      );
+
+
+    const total =
+      values.reduce(
+        (sum, value) =>
+          sum + value,
+        0
+      );
+
+
+    setText(
+      'agamaTotal',
+      formatNumber(
+        total
+      )
+    );
+
+
+    createDonut(
+      'agamaChart',
+      labels,
+      values
+    );
+
+
+    createLegend(
+      'agamaLegend',
+      labels,
+      values
+    );
+
+  }
+
+
+  /* =========================================================
+     FASILITAS
+  ========================================================= */
+
+  function renderFasilitas(data) {
+
+    const fasilitas =
+      data.fasilitas || {};
+
+
+    setText(
+      'fasilitasTotal',
+      formatNumber(
+        fasilitas.total
+      )
+    );
+
+
+    setText(
+      'fasilitasPendidikan',
+      formatNumber(
+        fasilitas.pendidikan
+      )
+    );
+
+
+    setText(
+      'fasilitasKesehatan',
+      formatNumber(
+        fasilitas.kesehatan
+      )
+    );
+
+
+    setText(
+      'fasilitasKeagamaan',
+      formatNumber(
+        fasilitas.keagamaan
+      )
+    );
+
+
+    const categoryLabels = [
+      'Pendidikan',
+      'Kesehatan',
+      'Keagamaan',
+      'Lainnya'
+    ];
+
+
+    const categoryValues = [
+
+      Number(
+        fasilitas.pendidikan || 0
+      ),
+
+      Number(
+        fasilitas.kesehatan || 0
+      ),
+
+      Number(
+        fasilitas.keagamaan || 0
+      ),
+
+      Number(
+        fasilitas.lainnya || 0
+      )
+
+    ];
+
+
+    createDonut(
+      'fasilitasCategoryChart',
+      categoryLabels,
+      categoryValues
+    );
+
+
+    createLegend(
+      'fasilitasLegend',
+      categoryLabels,
+      categoryValues
+    );
+
+
+    const jenis =
+      fasilitas.jenis || [];
+
+
+    createFacilityChart(
+
+      'fasilitasPendidikanChart',
+
+      jenis.filter(
+        item =>
+          String(
+            item.kategori || ''
+          ).toLowerCase()
+          === 'pendidikan'
+      ),
+
+      '#2474E8'
+
+    );
+
+
+    createFacilityChart(
+
+      'fasilitasKesehatanChart',
+
+      jenis.filter(
+        item =>
+          String(
+            item.kategori || ''
+          ).toLowerCase()
+          === 'kesehatan'
+      ),
+
+      '#E94B5F'
+
+    );
+
+
+    createFacilityChart(
+
+      'fasilitasKeagamaanChart',
+
+      jenis.filter(
+        item => {
+
+          const k =
+            String(
+              item.kategori || ''
+            ).toLowerCase();
+
+          return (
+            k === 'keagamaan' ||
+            k === 'agama'
+          );
+
+        }
+      ),
+
+      '#7B4DE2'
+
+    );
+
+
+    createFacilityChart(
+
+      'fasilitasLainnyaChart',
+
+      jenis.filter(
+        item => {
+
+          const k =
+            String(
+              item.kategori || ''
+            ).toLowerCase();
+
+          return (
+            k !== 'pendidikan' &&
+            k !== 'kesehatan' &&
+            k !== 'keagamaan' &&
+            k !== 'agama'
+          );
+
+        }
+      ),
+
+      '#F4A21A'
+
+    );
+
+  }
+
+
+  /* =========================================================
+     UMKM
+  ========================================================= */
+
+  function renderUMKM(data) {
+
+    const umkm =
+      data.umkm || {};
+
+
+    setText(
+      'umkmTotal',
+      formatNumber(
+        umkm.total
+      )
+    );
+
+
+    const dusun =
+      umkm.dusun || [];
+
+
+    const dusunLabels =
+      dusun.map(
+        item => item.dusun
+      );
+
+
+    const dusunValues =
+      dusun.map(
+        item =>
+          Number(
+            item.jumlah || 0
+          )
+      );
+
+
+    createDonut(
+      'umkmDusunChart',
+      dusunLabels,
+      dusunValues
+    );
+
+
+    createLegend(
+      'umkmDusunLegend',
+      dusunLabels,
+      dusunValues
+    );
+
+
+    const jenis =
+      umkm.jenisUsaha || [];
+
+
+    createChart(
+
+      'umkmJenisChart',
+
+      'bar',
+
+      jenis.map(
+        item => item.jenis
+      ),
+
+      [
+        {
+          label: 'Jumlah UMKM',
+
+          data: jenis.map(
+            item =>
+              Number(
+                item.jumlah || 0
+              )
+          ),
+
+          backgroundColor:
+            '#7B4DE2',
+
+          borderRadius: 6,
+
+          barThickness: 18
+        }
+      ],
+
+      {
+
+        indexAxis: 'y',
+
+        plugins: {
+          legend: {
+            display: false
+          }
+        },
+
+        scales: {
+
+          x: {
+            beginAtZero: true,
+
+            ticks: {
+              precision: 0
+            }
+          },
+
+          y: {
+            grid: {
+              display: false
+            }
+          }
+
+        }
+
+      }
+
+    );
+
+
+    const wilayah =
+      umkm.wilayahPemasaran || [];
+
+
+    const wilayahLabels =
+      wilayah.map(
+        item => item.wilayah
+      );
+
+
+    const wilayahValues =
+      wilayah.map(
+        item =>
+          Number(
+            item.jumlah || 0
+          )
+      );
+
+
+    createDonut(
+      'umkmWilayahChart',
+      wilayahLabels,
+      wilayahValues
+    );
+
+
+    createLegend(
+      'umkmWilayahLegend',
+      wilayahLabels,
+      wilayahValues
+    );
+
+
+    const media =
+      umkm.mediaPemasaran || [];
+
+
+    const mediaLabels =
+      media.map(
+        item => item.media
+      );
+
+
+    const mediaValues =
+      media.map(
+        item =>
+          Number(
+            item.jumlah || 0
+          )
+      );
+
+
+    createDonut(
+      'umkmMediaChart',
+      mediaLabels,
+      mediaValues
+    );
+
+
+    createLegend(
+      'umkmMediaLegend',
+      mediaLabels,
+      mediaValues
+    );
+
+  }
+
+
+  /* =========================================================
+     FACILITY CHART
+  ========================================================= */
+
+  function createFacilityChart(
+    canvasId,
+    items,
+    color
+  ) {
+
+    const canvas =
+      document.getElementById(
+        canvasId
+      );
+
+    if (!canvas) return;
+
+
+    const parent =
+      canvas.parentElement;
+
+
+    const oldEmpty =
+      parent.querySelector(
+        '.empty-chart'
+      );
+
+
+    if (oldEmpty) {
+      oldEmpty.remove();
+    }
+
+
+    if (
+      !items ||
+      items.length === 0
+    ) {
+
+      destroyChart(
+        canvasId
+      );
+
+      canvas.style.display =
+        'none';
+
+
+      const empty =
+        document.createElement(
+          'div'
+        );
+
+
+      empty.className =
+        'empty-chart';
+
+
+      empty.style.height =
+        '100%';
+
+
+      empty.style.display =
+        'flex';
+
+
+      empty.style.alignItems =
+        'center';
+
+
+      empty.style.justifyContent =
+        'center';
+
+
+      empty.textContent =
+        'Data fasilitas belum tersedia.';
+
+
+      parent.appendChild(
+        empty
+      );
+
+      return;
+
+    }
+
+
+    canvas.style.display =
+      'block';
+
+
+    const labels =
+      items.map(
+        item => item.nama
+      );
+
+
+    const values =
+      items.map(
+        item =>
+          Number(
+            item.jumlah || 0
+          )
+      );
+
+
+    createChart(
+
+      canvasId,
+
+      'bar',
+
+      labels,
+
+      [
+        {
+          label: 'Jumlah',
+
+          data: values,
+
+          backgroundColor:
+            color,
+
+          borderRadius: 6,
+
+          barThickness: 18
+        }
+      ],
+
+      {
+
+        indexAxis: 'y',
+
+        plugins: {
+
+          legend: {
+            display: false
+          }
+
+        },
+
+        scales: {
+
+          x: {
+
+            beginAtZero: true,
+
+            ticks: {
+              precision: 0
+            }
+
+          },
+
+          y: {
+
+            grid: {
+              display: false
+            },
+
+            ticks: {
+              font: {
+                size: 10
+              }
+            }
+
+          }
+
+        }
+
+      }
+
+    );
+
+  }
+
+
+  /* =========================================================
+     DONUT
+  ========================================================= */
+
+  function createDonut(
+    canvasId,
+    labels,
+    data
+  ) {
+
+    if (
+      !labels ||
+      labels.length === 0
+    ) {
+
+      destroyChart(
+        canvasId
+      );
+
+      return;
+
+    }
+
+
+    createChart(
+
+      canvasId,
+
+      'doughnut',
+
+      labels,
+
+      [
+        {
+          data: data,
+
+          backgroundColor:
+            COLORS.slice(
+              0,
+              labels.length
+            ),
+
+          borderColor:
+            '#ffffff',
+
+          borderWidth: 3,
+
+          hoverOffset: 6
+        }
+      ],
+
+      {
+
+        cutout: '63%',
+
+        plugins: {
+
+          legend: {
+            display: false
+          }
+
+        }
+
+      }
+
+    );
+
+  }
+
+
+  /* =========================================================
+     LEGEND
+  ========================================================= */
+
+  function createLegend(
+    elementId,
+    labels,
+    values
+  ) {
+
+    const container =
+      document.getElementById(
+        elementId
+      );
+
+    if (!container) return;
+
+
+    container.innerHTML =
+      '';
+
+
+    const total =
+      values.reduce(
+        (sum, value) =>
+          sum +
+          Number(
+            value || 0
+          ),
+        0
+      );
+
+
+    labels.forEach(
+      function(
+        label,
+        index
+      ) {
+
+        const value =
+          Number(
+            values[index] || 0
+          );
+
+
+        const percent =
+          total > 0
+            ? (
+                (
+                  value /
+                  total
+                ) *
+                100
+              ).toFixed(1)
+            : '0.0';
+
+
+        const item =
+          document.createElement(
+            'div'
+          );
+
+        item.className =
+          'legend-item';
+
+
+        const dot =
+          document.createElement(
+            'span'
+          );
+
+        dot.className =
+          'legend-dot';
+
+
+        dot.style.backgroundColor =
+          COLORS[
+            index %
+            COLORS.length
+          ];
+
+
+        const name =
+          document.createElement(
+            'span'
+          );
+
+        name.className =
+          'legend-name';
+
+        name.textContent =
+          label;
+
+
+        const valueEl =
+          document.createElement(
+            'span'
+          );
+
+        valueEl.className =
+          'legend-value';
+
+
+        valueEl.textContent =
+          formatNumber(
+            value
+          ) +
+          ' (' +
+          percent +
+          '%)';
+
+
+        item.appendChild(
+          dot
+        );
+
+        item.appendChild(
+          name
+        );
+
+        item.appendChild(
+          valueEl
+        );
+
+
+        container.appendChild(
+          item
+        );
+
+      }
+    );
+
+  }
+
+
+  /* =========================================================
+     CREATE CHART
+  ========================================================= */
+
+  function createChart(
+    canvasId,
+    type,
+    labels,
+    datasets,
+    options
+  ) {
+
+    const canvas =
+      document.getElementById(
+        canvasId
+      );
+
+    if (!canvas) return;
+
+
+    if (
+      charts[canvasId]
+    ) {
+
+      charts[
+        canvasId
+      ].destroy();
+
+      delete charts[
+        canvasId
+      ];
+
+    }
+
+
+    const defaultOptions = {
+
+      responsive: true,
+
+      maintainAspectRatio:
+        false,
+
+      animation: {
+        duration: 450
+      },
+
+      plugins: {
+
+        legend: {
+
+          labels: {
+
+            usePointStyle:
+              true,
+
+            pointStyle:
+              'circle',
+
+            padding:
+              18,
+
+            font: {
+              size: 11
+            }
+
+          }
+
+        },
+
+
+        tooltip: {
+
+          backgroundColor:
+            'rgba(18,60,52,.94)',
+
+          padding:
+            10,
+
+          titleFont: {
+            size: 11
+          },
+
+          bodyFont: {
+            size: 11
+          },
+
+
+          callbacks: {
+
+            label:
+              function(
+                context
+              ) {
+
+                const value =
+
+                  context.parsed &&
+                  context.parsed.x !==
+                    undefined
+
+                    ? context.parsed.x
+
+                    :
+
+                  context.parsed &&
+                  context.parsed.y !==
+                    undefined
+
+                    ? context.parsed.y
+
+                    :
+
+                  context.raw;
+
+
+                return (
+                  ' ' +
+                  Number(
+                    value || 0
+                  ).toLocaleString(
+                    'id-ID'
+                  )
+                );
+
+              }
+
+          }
+
+        }
+
+      },
+
+
+      scales: {
+
+        x: {
+
+          grid: {
+            color:
+              '#edf1ef'
+          },
+
+          ticks: {
+
+            color:
+              '#7b8985',
+
+            font: {
+              size: 10
+            }
+
+          }
+
+        },
+
+
+        y: {
+
+          grid: {
+            color:
+              '#edf1ef'
+          },
+
+          ticks: {
+
+            color:
+              '#7b8985',
+
+            font: {
+              size: 10
+            }
+
+          }
+
+        }
+
+      }
+
     };
 
-    const finalOptions = mergeOptions(defaultOptions, options || {});
 
-    charts[canvasId] = new Chart(canvas.getContext('2d'), {
-      type: type,
-      data: { labels: labels, datasets: datasets },
-      options: finalOptions
-    });
+    const finalOptions =
+      mergeOptions(
+        defaultOptions,
+        options || {}
+      );
+
+
+    charts[canvasId] =
+      new Chart(
+        canvas.getContext(
+          '2d'
+        ),
+        {
+
+          type:
+            type,
+
+          data: {
+            labels:
+              labels,
+
+            datasets:
+              datasets
+          },
+
+          options:
+            finalOptions
+
+        }
+      );
+
   }
 
-  function mergeOptions(base, extra) {
-    const result = { ...base, ...extra };
-    result.plugins = { ...(base.plugins || {}), ...(extra.plugins || {}) };
-    result.scales = { ...(base.scales || {}), ...(extra.scales || {}) };
+
+  /* =========================================================
+     MERGE OPTIONS
+  ========================================================= */
+
+  function mergeOptions(
+    base,
+    extra
+  ) {
+
+    const result = {
+      ...base,
+      ...extra
+    };
+
+
+    result.plugins = {
+      ...(base.plugins || {}),
+      ...(extra.plugins || {})
+    };
+
+
+    result.scales = {
+      ...(base.scales || {}),
+      ...(extra.scales || {})
+    };
+
+
     return result;
+
   }
 
-  function destroyChart(canvasId) {
-    if (charts[canvasId]) {
-      charts[canvasId].destroy();
-      delete charts[canvasId];
+
+  /* =========================================================
+     DESTROY CHART
+  ========================================================= */
+
+  function destroyChart(
+    canvasId
+  ) {
+
+    if (
+      charts[canvasId]
+    ) {
+
+      charts[
+        canvasId
+      ].destroy();
+
+      delete charts[
+        canvasId
+      ];
+
     }
+
   }
 
-  function showSection(sectionName, button) {
-    document.querySelectorAll('.section').forEach(function(section) {
-      section.classList.remove('active');
+
+  /* =========================================================
+     SHOW SECTION
+  ========================================================= */
+
+  function showSection(
+    sectionName,
+    button
+  ) {
+
+    document
+      .querySelectorAll(
+        '.section'
+      )
+      .forEach(
+        function(section) {
+
+          section.classList.remove(
+            'active'
+          );
+
+        }
+      );
+
+
+    const section =
+      document.getElementById(
+        'section-' +
+        sectionName
+      );
+
+
+    if (section) {
+
+      section.classList.add(
+        'active'
+      );
+
+    }
+
+
+    document
+      .querySelectorAll(
+        '.menu-item'
+      )
+      .forEach(
+        function(item) {
+
+          item.classList.remove(
+            'active'
+          );
+
+        }
+      );
+
+
+    if (button) {
+
+      button.classList.add(
+        'active'
+      );
+
+    }
+
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
     });
 
-    const section = document.getElementById('section-' + sectionName);
-    if (section) section.classList.add('active');
-
-    document.querySelectorAll('.menu-item').forEach(function(item) {
-      item.classList.remove('active');
-    });
-
-    if (button) button.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  function setText(id, value) {
-    const el = document.getElementById(id);
-    if (el) el.textContent = value;
+
+  /* =========================================================
+     SET TEXT
+  ========================================================= */
+
+  function setText(
+    id,
+    value
+  ) {
+
+    const el =
+      document.getElementById(
+        id
+      );
+
+    if (el) {
+
+      el.textContent =
+        value;
+
+    }
+
   }
 
-  function showLoading(message = 'Memuat data dashboard...') {
-    const title = document.querySelector('.topbar-title p');
-    if (title) title.textContent = message;
 
-    const overlay = document.getElementById('loadingOverlay');
-    const text = overlay ? overlay.querySelector('.loading-text') : null;
-    if (text) text.textContent = message;
+  /* =========================================================
+     SHOW LOADING
+  ========================================================= */
 
-    if (overlay) overlay.classList.add('active');
+  function showLoading() {
+
+    const overlay =
+      document.getElementById(
+        'loadingOverlay'
+      );
+
+
+    const title =
+      document.querySelector(
+        '.topbar-title p'
+      );
+
+
+    const select =
+      document.getElementById(
+        'yearSelect'
+      );
+
+
+    if (overlay) {
+
+      overlay.classList.add(
+        'active'
+      );
+
+    }
+
+
+    if (title) {
+
+      title.textContent =
+        'Memuat data dashboard...';
+
+    }
+
+
+    if (select) {
+
+      select.disabled =
+        true;
+
+    }
+
   }
+
+
+  /* =========================================================
+     HIDE LOADING
+  ========================================================= */
 
   function hideLoading() {
-    const title = document.querySelector('.topbar-title p');
-    if (title) title.textContent = 'Profil dan struktur wilayah Desa Tulis';
 
-    const overlay = document.getElementById('loadingOverlay');
-    if (overlay) overlay.classList.remove('active');
+    const overlay =
+      document.getElementById(
+        'loadingOverlay'
+      );
+
+
+    const title =
+      document.querySelector(
+        '.topbar-title p'
+      );
+
+
+    const select =
+      document.getElementById(
+        'yearSelect'
+      );
+
+
+    if (overlay) {
+
+      overlay.classList.remove(
+        'active'
+      );
+
+    }
+
+
+    if (title) {
+
+      title.textContent =
+        'Profil dan struktur wilayah Desa Tulis';
+
+    }
+
+
+    if (select) {
+
+      select.disabled =
+        false;
+
+    }
+
   }
 
-  function showError(message) {
-    const box = document.getElementById('errorBox');
+
+  /* =========================================================
+     SHOW ERROR
+  ========================================================= */
+
+  function showError(
+    message
+  ) {
+
+    const box =
+      document.getElementById(
+        'errorBox'
+      );
+
+
     if (!box) return;
-    box.textContent = message;
-    box.style.display = 'block';
+
+
+    box.textContent =
+      message;
+
+
+    box.style.display =
+      'block';
+
   }
+
+
+  /* =========================================================
+     HIDE ERROR
+  ========================================================= */
 
   function hideError() {
-    const box = document.getElementById('errorBox');
+
+    const box =
+      document.getElementById(
+        'errorBox'
+      );
+
+
     if (!box) return;
-    box.style.display = 'none';
+
+
+    box.style.display =
+      'none';
+
   }
+
 </script>
 
 </body>
