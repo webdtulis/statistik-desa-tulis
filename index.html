@@ -322,11 +322,6 @@
 <script>
 const API_URL='https://script.google.com/macros/s/AKfycbxp8IUzB34AxtwRe0HT18c_H0yBdLXKWVppZ5ZFUbfvE64D7mWo478g50a5AMzgxHQA/exec';
 
-/*
- * JSONP dipakai karena dashboard berada di GitHub Pages,
- * sedangkan data berasal dari Google Apps Script.
- * Code.gs sudah mendukung parameter callback.
- */
 function apiRequest(action,params={}){
   return new Promise(function(resolve,reject){
     const callbackName='dashboardCallback_'+Date.now()+'_'+Math.random().toString(36).slice(2);
@@ -473,11 +468,6 @@ function renderAdministrasi(data){
   });
 }
 
-/* =========================================================
-   PENDUDUK
-   HANYA BAGIAN INI YANG DIUBAH:
-   Penduduk per Dusun -> Penduduk Berdasarkan Kelompok Usia
-========================================================= */
 function renderPenduduk(data){
   const penduduk=data.penduduk||{};
 
@@ -491,18 +481,6 @@ function renderPenduduk(data){
   createDonut('genderChart',genderLabels,genderValues);
   createLegend('genderLegend',genderLabels,genderValues);
 
-  /*
-   * Apps Script diharapkan mengirim:
-   *
-   * data.pendudukUsia = [
-   *   {usia:"15-19",laki:1523,perempuan:1411},
-   *   {usia:"20-24",laki:1513,perempuan:1380},
-   *   ...
-   * ]
-   *
-   * Untuk mengakomodasi Code.gs dengan nama "usia",
-   * kode juga menerima data.usia.
-   */
   const usia=Array.isArray(data.rentangUsia)
     ? data.rentangUsia
     : (Array.isArray(data.pendudukUsia)
@@ -511,9 +489,9 @@ function renderPenduduk(data){
 
   const ageLabels=usia.map(item=>item.usia||item.rentangUsia||item['Rentang Usia']||'');
 
+  // PERUBAHAN: Nilai laki-laki diubah jadi positif normal agar bisa bersebelahan
   const lakiLaki=usia.map(item=>{
-    const value=Number(item.laki??item.lakiLaki??item['Laki-Laki']??0);
-    return -Math.abs(value);
+    return Number(item.laki??item.lakiLaki??item['Laki-Laki']??0);
   });
 
   const perempuan=usia.map(item=>{
@@ -530,37 +508,43 @@ function renderPenduduk(data){
         data:lakiLaki,
         backgroundColor:'#2474E8',
         borderRadius:5,
-        barThickness:18
+        barThickness:12 // Sedikit dikecilkan agar rapi saat bersebelahan
       },
       {
         label:'Perempuan',
         data:perempuan,
         backgroundColor:'#E94B5F',
         borderRadius:5,
-        barThickness:18
+        barThickness:12
       }
     ],
     {
-      indexAxis:'y',
+      indexAxis:'x', // PERUBAHAN: Mengubah orientasi menjadi vertikal
       plugins:{
         legend:{position:'top'},
         tooltip:{
           callbacks:{
             label:function(context){
-              return ' '+context.dataset.label+': '+formatNumber(Math.abs(Number(context.raw||0)));
+              return ' '+context.dataset.label+': '+formatNumber(Number(context.raw||0));
             }
           }
         }
       },
       scales:{
+        // PERUBAHAN: Menyesuaikan tampilan sumbu X dan Y untuk grafik vertikal
         x:{
+          grid:{display:false},
+          ticks:{
+            font:{size:10}
+          }
+        },
+        y:{
           beginAtZero:true,
           ticks:{
             precision:0,
-            callback:function(value){return formatNumber(Math.abs(value))}
+            callback:function(value){return formatNumber(value)}
           }
-        },
-        y:{grid:{display:false}}
+        }
       }
     }
   );
